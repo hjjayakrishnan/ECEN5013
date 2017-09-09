@@ -1,5 +1,5 @@
 /*****************************************************************************
-​ ​* ​ ​Copyright ​ ​(C) ​ ​2017 ​ ​by ​ ​Alex ​ ​Fosdick
+​ ​* ​ ​Copyright ​ ​(C) ​ ​2017 ​ ​by ​ Jayakrishnan HJ
 ​ ​*
 ​ ​* ​ ​Redistribution, ​ ​modification ​ ​or ​ ​use ​ ​of ​ ​this ​ ​software ​ ​in ​ ​source ​ ​or ​ ​binary
 ​ ​* ​ ​forms ​ ​is ​ ​permitted ​ ​as ​ ​long ​ ​as ​ ​the ​ ​files ​ ​maintain ​ ​this ​ ​copyright. ​ ​Users ​ ​are
@@ -13,7 +13,7 @@
 ​ ​* ​ ​@brief ​ ​API for a circular buffer data structure
 ​ ​*
 ​ ​* ​ ​This ​ ​header ​ ​file ​ ​provides ​ ​an ​ ​abstraction ​ ​of ​ ​reading ​ ​and
-​ ​* ​ ​writing ​ ​to ​ ​memory ​ ​via ​ ​function ​ ​calls.
+​ ​* ​ ​writing ​ ​to ​ a circular buffer ​ ​via ​ ​function ​ ​calls.
 ​ ​*
 ​ ​* ​ ​@author ​ Jayakrishnan HJ
 ​ ​* ​ ​@date ​ ​September ​ 8 ​ ​2017
@@ -128,4 +128,4 @@ int init_buffer(circ_buffer **c1);
 ​ ​*/
 void destroy(circ_buffer **c1);
 
-#endif
+#endif /* _CIRCBUFF_H_  */
