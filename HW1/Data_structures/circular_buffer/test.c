@@ -17,5 +17,5 @@ int main(){
   add_element(7, &c1);
 
   dump(c1);
-  free(c1);
+  destroy(&c1);
 }
