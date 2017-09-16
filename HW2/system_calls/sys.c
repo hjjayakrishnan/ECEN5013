@@ -2402,15 +2402,18 @@ SYSCALL_DEFINE3(sortem, unsigned long *, src, unsigned long *, dst, unsigned lon
   printk(KERN_INFO "Entering sys_sortem");
   printk(KERN_INFO "buffer size: %lu", len);
 
-  buffer = kmalloc(sizeof(long), GFP_USER);
+  buffer = kmalloc(len*sizeof(long), GFP_KERNEL);
   if(!buffer){
     printk(KERN_INFO "Kmalloc failed");
     return -EFAULT;
   }
   /* copy from user space (src) to kernel memory (buffer) */
   /* (to, from, number of bytes to copy) */
-  if(copy_from_user(buffer, src, len))
+  if(copy_from_user(buffer, src, len*sizeof(long)))
     return -EFAULT;
+
+	for(i=0;i<len;i++)
+		printk(KERN_INFO "Element %lu: %lu", i, *(buffer+i));
   printk(KERN_INFO "Sorting..");
   /* sort buffer */
 
@@ -2424,9 +2427,11 @@ SYSCALL_DEFINE3(sortem, unsigned long *, src, unsigned long *, dst, unsigned lon
     }
   }
   printk(KERN_INFO "Completed sorting");
+	for(i=0;i<len;i++)
+		printk(KERN_INFO "Element %lu: %lu", i, *(buffer+i));
   /* copy from kernel space (src) to kernel memory (buffer) */
   /* (to, from, number of bytes to copy) */
-  if(copy_to_user(dst, buffer, len));
+  if(copy_to_user(dst, buffer, len*sizeof(long)));
     return -EFAULT;
 
   kfree(buffer);
