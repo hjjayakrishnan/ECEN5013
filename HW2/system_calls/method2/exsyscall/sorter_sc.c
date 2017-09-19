@@ -26,12 +26,12 @@ SYSCALL_DEFINE3(sortem, int32_t*, src, int32_t*, dst, int32_t, len)
   printk(KERN_INFO "Sorting..");
   /* sort buffer */
 
-  for(i=0;i<len;i++){
-    for(j=0;j<len;j++){
-      if (*(buffer+i)< *(buffer+j)){
-        temp = *(buffer+i);
-        *(buffer+i) = *(buffer+j);
-        *(buffer+j) = temp;
+	for(i=0;i<(len-1);i++){
+    for(j=0;j<(len-i-1);j++){
+      if (*(buffer+j)< *(buffer+j+1)){
+        temp = *(buffer+j);
+        *(buffer+j) = *(buffer+j+1);
+        *(buffer+j+1) = temp;
       }
     }
   }

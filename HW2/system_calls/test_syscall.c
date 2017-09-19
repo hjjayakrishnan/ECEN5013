@@ -4,7 +4,7 @@
 #include <sys/syscall.h>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>
-
+#define CALL_COUNT 5
 
 int main(){
 
@@ -23,8 +23,12 @@ int main(){
   for(i=0;i<len;i++){
     printf("%ld : %ld\n",(long)i,(long)buffer[i]);
   }
-  int ret = syscall(333, buffer,out_buffer, len);
-  printf("\n%d",ret);
+  for (i =0;i<CALL_COUNT;i++){
+    syscall(333, buffer,out_buffer, len);
+
+  }
+
+  // printf("\n%d",ret);
   // perror(ret);
   printf("\n after sorting \n");
   for(i=0;i<len;i++){
