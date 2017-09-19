@@ -4,27 +4,25 @@
 #include <linux/syscalls.h>
 #include <linux/slab.h>
 
-SYSCALL_DEFINE3(sortem, unsigned long*, src, unsigned long*, dst, unsigned long, len)
+SYSCALL_DEFINE3(sortem, int32_t*, src, int32_t*, dst, int32_t, len)
 {
-	unsigned long *buffer;
-	unsigned long i;
-	unsigned long j;
-	unsigned long temp;
+	int32_t *buffer;
+	int32_t i;
+	int32_t j;
+	int32_t temp;
   printk(KERN_INFO "Entering sys_sortem");
-  printk(KERN_INFO "buffer size: %lu", len);
+  printk(KERN_INFO "buffer size: %ld", (long)len);
 
-  buffer = kmalloc(len*sizeof(long), GFP_KERNEL);
+  buffer = kmalloc(len*sizeof(int32_t), GFP_KERNEL);
   if(!buffer){
     printk(KERN_INFO "Kmalloc failed");
     return -EFAULT;
   }
   /* copy from user space (src) to kernel memory (buffer) */
   /* (to, from, number of bytes to copy) */
-  if(copy_from_user(buffer, src, len*sizeof(long)))
+  if(copy_from_user(buffer, src, len*sizeof(int32_t)))
     return -EFAULT;
 
-	for(i=0;i<len;i++)
-		printk(KERN_INFO "Element %lu: %lu", i, *(buffer+i));
   printk(KERN_INFO "Sorting..");
   /* sort buffer */
 
@@ -38,11 +36,10 @@ SYSCALL_DEFINE3(sortem, unsigned long*, src, unsigned long*, dst, unsigned long,
     }
   }
   printk(KERN_INFO "Completed sorting");
-	for(i=0;i<len;i++)
-		printk(KERN_INFO "Element %lu: %lu", i, *(buffer+i));
+
   /* copy from kernel space (src) to kernel memory (buffer) */
   /* (to, from, number of bytes to copy) */
-  if(copy_to_user(dst, buffer, len*sizeof(long)));
+  if(copy_to_user(dst, buffer, len*sizeof(int32_t)));
     return -EFAULT;
 
   kfree(buffer);
