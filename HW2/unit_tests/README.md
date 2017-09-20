@@ -50,11 +50,11 @@ cmocka is included in this repository as a git subtree. See
 
 Included source files are:
 
-* quadratic.{h|c} - library for doubly linked list.
+* db_ll.{h|c} - library for doubly linked list.
 
-* test_quadratic.c - unit tests for doubly linked list.
+* test_dbll.c - unit tests for doubly linked list.
 
-* main.c - simple demo driver using library.
+* main_ll.c - simple demo driver using library.
 
 ## Unit tests Perfomed
 
