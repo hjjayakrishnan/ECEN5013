@@ -1,5 +1,5 @@
 # Kernel Device Driver
-Character driver to control the duty cycle, PWM and state of BeagleBone's on board LED
+Character driver to control the duty cycle, frequency and state of BeagleBone's on board LED
 
 ### Prerequisites
 
